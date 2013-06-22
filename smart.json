@@ -2,6 +2,6 @@
     "name":"meteorWisp",
     "description": "support for the wisp language",
     "author": "Jeremy Schoffen",
-    "version": "0.1.0"
-    "git": ""
+    "version": "0.1.0",
+    "git": "https://github.com/JeremS/meteorWisp"
 }
