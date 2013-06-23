@@ -1,7 +1,9 @@
+(def ^:private exports {})
+
 (def global 1)
 
-(def r (Npm.require "wisp.runtime"))
+(def r (Npm.require "wisp/runtime.js"))
 
-(TinyTest.add "wisp - compile"
+(.add Tinytest "wisp - compile"
               (fn [test]
                 (test.isTrue true)))
