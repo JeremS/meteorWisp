@@ -7,14 +7,18 @@ Npm.depends({"wisp": "0.8.0"});
 var wisp_handler = function(bundle, source_path, serve_path, where) {
   var fs = Npm.require('fs');
   var path = Npm.require('path');
+
   var read = Npm.require('wisp/reader.js').read_;
   var compile = Npm.require('wisp/compiler.js').compile_;
+
+  var intro = "var exports = {};\n";
+
   serve_path = serve_path + '.js';
 
-  var contents = fs.readFileSync(source_path);
+  var contents = fs.readFileSync(source_path, 'utf8');
 
   try {
-    contents = compile(read(contents.toString('utf8')));
+    contents = intro + compile(read(contents));
   } catch (e) {
     return bundle.error(
       source_path + ':' +
@@ -36,8 +40,7 @@ Package.register_extension("wisp", wisp_handler);
 
 
 Package.on_test(function (api) {
-  api.add_files(
-      ['test.wisp'], 
-      ['client', 'server']
-  );
+  var both = ['client', 'server'];
+  
+  api.add_files(['test.wisp', 'test2.js'], both);
 });
