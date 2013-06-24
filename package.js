@@ -39,8 +39,17 @@ var wisp_handler = function(bundle, source_path, serve_path, where) {
 Package.register_extension("wisp", wisp_handler);
 
 
+
+Package.on_use(function (api) {
+    var both = ['client', 'server'];    
+    api.add_files(['includes.js'], both);
+	
+});
+
 Package.on_test(function (api) {
-  var both = ['client', 'server'];
-  
-  api.add_files(['test.wisp', 'test2.js'], both);
+    var both = ['client', 'server'];  
+    api.add_files(['includes.js',
+		   'test.wisp', 
+		   'test2.js'], 
+		  both);
 });
